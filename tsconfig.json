@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "module": "commonjs",
+        "lib": [
+            "es6",
+            "es2015",
+            "dom"
+        ],
+        "types": [
+            "react",
+            "react-dom"
+        ],
+        "target": "es5",
+        "declaration": false,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "rootDir": ".",
+        "paths": {
+            "_master-page": ["app/common/root-component/master-page"]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
