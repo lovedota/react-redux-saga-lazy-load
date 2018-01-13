@@ -1,5 +1,5 @@
-import * as React from "react";
-import { applyReducers, runSagas } from "../root/root-store";
+import * as React from 'react';
+import { applyReducers, runSagas } from '../root/root-store';
 
 type IAsyncComponentState = {
   loadedComponent: any;

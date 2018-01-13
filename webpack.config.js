@@ -1,23 +1,24 @@
-const webpack = require("webpack");
+const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
   context: path.resolve(__dirname, './app'),
   entry: {
     vendor: [
-      "jquery",
-      "bootstrap",
-      "react",
-      "react-dom",
-      "react-router",
-      "react-router-dom",
-      "redux",
-      "react-redux",
-      "redux-saga"
+      'jquery',
+      'bootstrap',
+      'moment',
+      'react',
+      'react-dom',
+      'react-router',
+      'react-router-dom',
+      'redux',
+      'react-redux',
+      'redux-saga'
     ],
     main: './main.tsx'
   },
@@ -34,14 +35,14 @@ const config = {
     rules: [
       {
         test: /\.tsx?$/,
-        loaders: ['ts-loader'],
+        loaders: ['babel-loader', 'ts-loader'],
         exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
       },
       {
@@ -60,7 +61,7 @@ const config = {
       },
       {
         test: require.resolve('./node_modules/jquery/dist/jquery.js'),
-        loader: "expose-loader?$!expose-loader?jQuery"
+        loader: 'expose-loader?$!expose-loader?jQuery'
       }
     ]
   },
@@ -73,7 +74,7 @@ const config = {
     }),
     new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor"
+      name: 'vendor'
     }),
     new WebpackShellPlugin({
       onBuildStart:['echo "Webpack Start"', 'rm -rf dist'],
@@ -85,13 +86,15 @@ const config = {
 if (isProduction) {
   config.plugins.push(
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: "'production'"
-      }
+      'process.env.NODE_ENV': 'production'
     }),
     new webpack.optimize.UglifyJsPlugin({
       parallel: true,
-      compress: { warnings: false }
+      compress: { warnings: false },
+      output: {
+        comments: false
+      },
+      sourceMap: false
     })
   );
 } else {

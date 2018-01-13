@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import createSagaMiddleware from "redux-saga";
-import { fork } from "redux-saga/effects";
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { fork } from 'redux-saga/effects';
 
-import RootReducer from "../root/root-reducer";
-import RootSaga from "../root/root-saga";
+import RootReducer from '../root/root-reducer';
+import RootSaga from '../root/root-saga';
 
 export const sagaMiddleware = createSagaMiddleware();
 
@@ -25,7 +25,7 @@ export const createReducers = (pageReducer?) => {
     };
 
     if (pageReducer) {
-        reducers["page"] = pageReducer;
+        reducers['page'] = pageReducer;
     }
 
     return combineReducers(reducers);

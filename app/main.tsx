@@ -1,26 +1,26 @@
-import "jquery";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.css";
-import "./main.css";
+import 'babel-polyfill';
+import 'jquery';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import './main.css';
 
-import * as React from "react";
-import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { Router, Route } from "react-router";
+import * as React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { Router, Route } from 'react-router';
+import createHistory from 'history/createBrowserHistory';
 
-import createHistory from "history/createBrowserHistory";
+import { withAsync } from './common/async-component';
+import BootstrapMenuLink from './common/bootstrap-menu-link';
 
-import { withAsync } from "./common/async-component";
-import BootstrapMenuLink from "./common/bootstrap-menu-link";
-
-import Routes from "./routes";
-import RootStore from "./root/root-store";
+import Routes from './routes';
+import RootStore from './root/root-store';
 
 const NavigationBar = (
-    <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container">
-            <div className="collapse navbar-collapse">
-                <ul className="nav navbar-nav">
+    <nav className='navbar navbar-default navbar-fixed-top'>
+        <div className='container'>
+            <div className='collapse navbar-collapse'>
+                <ul className='nav navbar-nav'>
                     {
                         Routes.map((route, index) => (
                             <BootstrapMenuLink
@@ -38,7 +38,7 @@ const NavigationBar = (
 );
 
 const Container = (
-    <div className="container page-container">
+    <div className='container page-container'>
         <Provider store={RootStore}>
             <div>
                 {
@@ -56,17 +56,21 @@ const Container = (
     </div>
 );
 
+const Footer = (
+    <footer className='footer'>
+        <div className='container'>
+            <p className='text-muted'>2017 Redux Saga Lazy Load.</p>
+        </div>
+    </footer>
+);
+
 const App = () => {
     return (
         <Router history={createHistory()}>
             <div>
                 {NavigationBar}
                 {Container}
-                <footer className="footer">
-                    <div className="container">
-                        <p className="text-muted">2017 Redux Saga Lazy Load.</p>
-                    </div>
-                </footer>
+                {Footer}
             </div>
         </Router>
     );
@@ -74,5 +78,5 @@ const App = () => {
 
 render(
     <App />,
-    document.getElementById("container")
+    document.getElementById('container')
 );

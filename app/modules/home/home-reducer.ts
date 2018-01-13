@@ -1,26 +1,25 @@
 const initState = {
     isLoading: false,
-    items: []
+    items: [],
+    page: 0,
+    q: 'singapore'
 };
 
 export default (state = initState, action) => {
     switch (action.type) {
-        case "home/init":
+        case 'home/init':
             return {
-                isLoading: true,
-                items: []
+                ...state,
+                isLoading: true
             };
 
-        case "home/init/success":
+        case 'home/init/success':
             return {
+                ...state,
                 isLoading: false,
                 items: action.items
             };
-        case "home/init/error":
-            return {
-                isLoading: false,
-                items: []
-            };
+
         default:
             return state;
     }

@@ -1,22 +1,17 @@
 import { dispatch } from "../../root/root-store";
+//import AboutServices from "./contact-services";
 
 export default {
     async init() {
         dispatch({
-            type: "about/init"
+            type: "contact/init"
         });
     },
 
     update(item) {
         dispatch({
-            type: "about/update",
+            type: "contact/update",
             item
-        });
-    },
-
-    changeColor() {
-        dispatch({
-            type: "about/color"
         });
     }
 };

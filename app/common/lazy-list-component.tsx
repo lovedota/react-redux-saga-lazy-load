@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as cloneWithProps from "react-clonewithprops";
+import * as React from 'react';
+import * as cloneWithProps from 'react-clonewithprops';
 
-import * as elementSize from "element-size";
+import * as elementSize from 'element-size';
 
 type LazyListProps = {
     maxHeight?: number;
@@ -107,7 +107,7 @@ class LazyListComponent extends React.Component<LazyListProps, LazyListState> {
         const childrenToRender = this.props.children.slice(start, end);
         const children = childrenToRender.map((child, index) => {
             if (index === 0) {
-                return cloneWithProps(child, { ref: "child-" + index, key: index });
+                return cloneWithProps(child, { ref: 'child-' + index, key: index });
             }
             return child;
         });
@@ -121,7 +121,7 @@ class LazyListComponent extends React.Component<LazyListProps, LazyListState> {
         );
 
         return (
-            <div style={{ height: this.state.height, overflowY: "auto" }}
+            <div style={{ height: this.state.height, overflowY: 'auto' }}
                 className={this.props.className}
                 ref="container"
                 onScroll={this.onScroll.bind(this)}>
@@ -131,7 +131,7 @@ class LazyListComponent extends React.Component<LazyListProps, LazyListState> {
     }
 
     private onScroll() {
-        const container = this.refs["container"];
+        const container = this.refs['container'];
         const scrollTop = container.scrollTop;
 
         const childrenTop = Math.floor(scrollTop / this.state.childHeight);
@@ -143,9 +143,9 @@ class LazyListComponent extends React.Component<LazyListProps, LazyListState> {
         }
 
         this.setState({
-            childrenTop: childrenTop,
-            childrenBottom: childrenBottom,
-            scrollTop: scrollTop
+            childrenTop,
+            childrenBottom,
+            scrollTop
         });
     }
 
@@ -164,7 +164,7 @@ class LazyListComponent extends React.Component<LazyListProps, LazyListState> {
     }
 
     private getChildHeight() {
-        const firstChild = this.refs["child-0"];
+        const firstChild = this.refs['child-0'];
         const el = firstChild;
 
         return this.getElementHeight(el);

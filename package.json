@@ -6,11 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=dev webpack --watch",
-    "prod": "NODE_ENV=production webpack"
+    "prod": "NODE_ENV=production webpack -p"
   },
   "author": "lovedota21@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
     "express": "^4.15.2",
@@ -31,6 +32,13 @@
     "@types/react-router-dom": "^4.0.2",
     "@types/systemjs": "^0.20.2",
     "@types/webpack": "^2.2.12",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-minify": "^0.2.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "bundle-loader": "^0.5.5",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.4",
@@ -39,6 +47,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "http-server": "^0.9.0",
+    "moment": "^2.18.1",
     "node-sass": "^4.5.1",
     "path": "^0.12.7",
     "react": "^15.4.2",
@@ -55,9 +64,10 @@
     "ts-loader": "^2.3.6",
     "tslint": "^4.5.1",
     "tslint-react": "^2.5.0",
-    "typescript": "^2.2.1",
+    "typescript": "^2.6.2",
     "url-loader": "^0.5.8",
     "webpack": "^3.4.1",
-    "webpack-shell-plugin": "^0.5.0"
+    "webpack-shell-plugin": "^0.5.0",
+    "worker-loader": "^0.8.1"
   }
 }

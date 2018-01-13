@@ -1,8 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 
-import HomeActions from "./home-actions";
+import HomeActions from './home-actions';
 
-import { connect } from "react-redux";
+import HomeItem from './components/home-item';
+
+import { connect } from 'react-redux';
 
 interface IHomePageProps {
     isLoading: boolean;
@@ -15,13 +17,9 @@ class HomePage extends React.Component<IHomePageProps, any> {
     }
 
     renderItems() {
-        const items = this.props.items.map((i, index) => {
+        const items = this.props.items.map((item, index) => {
             return (
-                <tr key={index}>
-                    <td>{i.id}</td>
-                    <td>{i.name}</td>
-                    <td>{i.quantity}</td>
-                </tr>
+                <HomeItem data={item} key={index} />
             );
         });
 
@@ -30,17 +28,17 @@ class HomePage extends React.Component<IHomePageProps, any> {
 
     renderEmpty() {
         return (
-            <tr>
-                <td colSpan={3} className="text-center">No Items</td>
-            </tr>
+            <div className="text-center">
+                No Items
+            </div>
         );
     }
 
     renderLoading() {
         return (
-            <tr>
-                <td colSpan={3} className="text-center">Loading...</td>
-            </tr>
+            <div className="text-center">
+                Loading...
+            </div>
         );
     }
 
@@ -60,18 +58,9 @@ class HomePage extends React.Component<IHomePageProps, any> {
                 <div className="page-header">
                     <h1>Home Page</h1>
                 </div>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <td>Id</td>
-                            <td>Name</td>
-                            <td>Quantity</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {content}
-                    </tbody>
-                </table>
+                <div>
+                    {content}
+                </div>
             </div>
         );
     }

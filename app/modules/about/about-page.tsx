@@ -5,12 +5,13 @@ import AboutActions from "./about-actions";
 
 import { connect } from "react-redux";
 
-interface IHomePageProps {
+type AboutPageProps = {
     isLoading: boolean;
     items: any[];
-}
+    color: string;
+};
 
-class HomePage extends React.Component<IHomePageProps, any> {
+class AboutPage extends React.Component<AboutPageProps, any> {
     componentDidMount() {
         AboutActions.init();
     }
@@ -19,7 +20,7 @@ class HomePage extends React.Component<IHomePageProps, any> {
         const items = this.props.items.map((i, index) => {
             return (
                 <a className="list-group-item" key={index}>
-                    {i.name}
+                    <input value={i.fullName} onChange={this.updateItem.bind(this, i)}/> {i.fullName} {i.dateOfBirth}
                 </a>
             );
         });
@@ -44,36 +45,51 @@ class HomePage extends React.Component<IHomePageProps, any> {
     }
 
     render() {
-        const { isLoading, items } = this.props;
+        const { isLoading, items, color } = this.props;
 
         let content;
 
         if (isLoading) {
             content = this.renderLoading();
         } else {
-            content = items.length ?
-            (
-                <LazyList maxHeight={452} className="list-group">
-                    {this.renderItems()}
-                </LazyList>
-            )
-            : this.renderEmpty();
+            // content = items.length ?
+            // (
+            //     <LazyList maxHeight={452} className="list-group">
+            //         {this.renderItems()}
+            //     </LazyList>
+            // )
+            // : this.renderEmpty();
         }
 
         return (
             <div>
                 <div className="page-header">
-                    <h1>About Page</h1>
+                    <h1 style={{color}}>About Page</h1>
+                    <button onClick={this.onToggle.bind(this)}>Toggle</button>
                 </div>
                 {content}
             </div>
         );
+    }
+
+    private onToggle() {
+        AboutActions.changeColor();
+    }
+
+    private updateItem(item, e: React.ChangeEvent<HTMLInputElement>) {
+        const newItem = {
+            ...item,
+            name: e.target.value
+        };
+
+        AboutActions.update(newItem);
     }
 }
 
 export default connect(
     ({page}) => ({
         isLoading: page.isLoading,
-        items: page.items
+        items: page.items,
+        color: page.color
     })
-)(HomePage);
+)(AboutPage);

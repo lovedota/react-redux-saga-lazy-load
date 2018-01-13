@@ -1,20 +1,21 @@
+import axios from 'axios';
+
+const API_KEY = 'f5da3ecc75d840fdb1f22f8418b8a14f';
+
 export default {
-    getItems() {
-        return new Promise<any[]>((resolve) => {
-            setTimeout(() => {
-                resolve([
-                    {
-                        id: "1",
-                        name: "Items 1",
-                        quantity: 100
-                    },
-                    {
-                        id: "2",
-                        name: "Items 2",
-                        quantity: 99
-                    }
-                ]);
-            }, 1000);
+    getNews(q: string, page: number) {
+        const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${API_KEY}`;
+
+        const params = {
+            page
+        };
+
+        if (q) {
+            params['q'] = q;
+        }
+
+        return axios.get(url, {
+            params
         });
     }
 };

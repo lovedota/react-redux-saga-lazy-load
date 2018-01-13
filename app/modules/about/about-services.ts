@@ -3,12 +3,13 @@ export default {
         return new Promise<any[]>((resolve) => {
             const items = [];
 
-            for (let i = 0; i < 5000; i++) {
+            for (let i = 0; i < 1000000; i++) {
               // each child must have a consistent height
-              items.push({
+                items.push({
                     id: i,
-                    name: `Items ${i}`,
-                    quantity: i + 1
+                    firstName: `First Name ${i}`,
+                    lastName: `Last Name ${i}`,
+                    dateOfBirth: Date.now()
                 });
             }
 
