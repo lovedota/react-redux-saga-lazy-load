@@ -5,6 +5,11 @@ const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const extractSass = new ExtractTextPlugin({
+  filename: "style.css",
+  disable: !isProduction
+});
+
 const config = {
   context: path.resolve(__dirname, './app'),
   entry: {
@@ -47,9 +52,14 @@ const config = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
+        use: extractSass.extract({
+            use: [{
+                loader: "css-loader"
+            }, {
+                loader: "sass-loader"
+            }],
+            // use style-loader in development
+            fallback: "style-loader"
         })
       },
       {
@@ -67,12 +77,12 @@ const config = {
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
-      minimize: true,
+      minimize: false,
       options: {
         context: __dirname
       }
     }),
-    new ExtractTextPlugin('style.css'),
+    extractSass,
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),

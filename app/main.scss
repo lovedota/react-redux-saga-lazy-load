@@ -4,13 +4,14 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 
 .page-container {
-  margin-top: 40px;
+  margin-top: 60px;
+  width: 860px;
 }
 
 .footer {
@@ -40,6 +41,11 @@ body > .container {
 
 code {
   font-size: 80%;
+}
+
+h1, h2 {
+  font-weight: 700;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
 }
 
 .loader-wrapper {

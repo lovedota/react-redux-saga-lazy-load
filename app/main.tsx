@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './main.css';
+import './main.scss';
 
 import * as React from 'react';
 import { render } from 'react-dom';
@@ -16,31 +16,13 @@ import BootstrapMenuLink from './common/bootstrap-menu-link';
 import Routes from './routes';
 import RootStore from './root/root-store';
 
-const NavigationBar = (
-    <nav className='navbar navbar-default navbar-fixed-top'>
-        <div className='container'>
-            <div className='collapse navbar-collapse'>
-                <ul className='nav navbar-nav'>
-                    {
-                        Routes.map((route, index) => (
-                            <BootstrapMenuLink
-                                label={route.label}
-                                to={route.to}
-                                activeOnlyWhenExact={route.activeOnlyWhenExact}
-                                key={index}
-                            />
-                        ))
-                    }
-                </ul>
-            </div>
-        </div>
-    </nav>
-);
+import Navigation from './layout/layout-navigation';
 
 const Container = (
-    <div className='container page-container'>
+    <>
+        <Navigation />
         <Provider store={RootStore}>
-            <div>
+            <div className="container">
                 {
                     Routes.map((route, index) => (
                         <Route
@@ -53,24 +35,14 @@ const Container = (
                 }
             </div>
         </Provider>
-    </div>
-);
-
-const Footer = (
-    <footer className='footer'>
-        <div className='container'>
-            <p className='text-muted'>2017 Redux Saga Lazy Load.</p>
-        </div>
-    </footer>
+    </>
 );
 
 const App = () => {
     return (
         <Router history={createHistory()}>
             <div>
-                {NavigationBar}
                 {Container}
-                {Footer}
             </div>
         </Router>
     );

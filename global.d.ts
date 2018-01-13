@@ -8,3 +8,4 @@ declare module 'worker-loader!*' {
   }
 
 declare module '*.jpg';
+declare module '*.gif';

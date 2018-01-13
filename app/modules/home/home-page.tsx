@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import HomeActions from './home-actions';
-
-import HomeItem from './components/home-item';
+import HomeList from './components/home-list';
 
 import { connect } from 'react-redux';
 
 interface IHomePageProps {
-    isLoading: boolean;
+    isLoaded: boolean;
     items: any[];
+    total: number;
 }
 
 class HomePage extends React.Component<IHomePageProps, any> {
@@ -16,51 +16,33 @@ class HomePage extends React.Component<IHomePageProps, any> {
         HomeActions.init();
     }
 
-    renderItems() {
-        const items = this.props.items.map((item, index) => {
-            return (
-                <HomeItem data={item} key={index} />
-            );
-        });
-
-        return items;
-    }
-
-    renderEmpty() {
-        return (
-            <div className="text-center">
-                No Items
-            </div>
-        );
-    }
-
-    renderLoading() {
-        return (
-            <div className="text-center">
-                Loading...
-            </div>
-        );
-    }
-
     render() {
-        const { isLoading, items } = this.props;
+        const { items, isLoaded, total } = this.props;
 
         let content;
 
-        if (isLoading) {
-            content = this.renderLoading();
+        if (!isLoaded) {
+            content = (
+                <div className="loader-wrapper">
+                    <div className="loader" />
+                </div>
+            );
+        } else if (total > 0) {
+            content = (
+                <HomeList 
+                    items={items} 
+                    total={total} 
+                />
+            );
         } else {
-            content = items.length ? this.renderItems() : this.renderEmpty();
+            content = (
+                <div className="text-center">No Items</div>
+            );
         }
 
         return (
             <div>
-                <div className="page-header">
-                    <h1>Home Page</h1>
-                </div>
-                <div>
-                    {content}
-                </div>
+                {content}
             </div>
         );
     }
@@ -68,7 +50,8 @@ class HomePage extends React.Component<IHomePageProps, any> {
 
 export default connect(
     ({page}) => ({
-        isLoading: page.isLoading,
-        items: page.items
+        isLoaded: page.isLoaded,
+        items: page.items,
+        total: page.total
     })
 )(HomePage);

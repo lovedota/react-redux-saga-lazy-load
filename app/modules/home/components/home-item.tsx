@@ -1,23 +1,26 @@
+import '../styles/home-item.scss';
+
 import * as React from 'react';
 
 export default (props) => {
     const { data } = props;
 
     return (
-        <div className="col-md-10 blogShort">
-            <h1>{data.headline}</h1>
-            <img
-                src={data.thumbnail}
-                alt="post img"
-                className="pull-left img-responsive thumb margin10 img-thumbnail"
-            />
-
-            <article>
-                <p>
+        <article className="home-item">
+            <h2>{data.headline}</h2>
+            <div className="home-item-content">
+                <img
+                    src={data.thumbnail}
+                    alt="post img"
+                    className="home-item-thumb img-responsive img-thumbnail"
+                />
+                <p className="home-item-description">
                     {data.description}
-                </p>
-            </article>
-            <a className="btn btn-blog pull-right marginBottom10">READ MORE</a>
-        </div>
+                </p>             
+            </div>
+            <div className="home-item-meta">
+                {data.publishDate}
+            </div>
+        </article>
     );
 };

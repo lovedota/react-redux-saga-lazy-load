@@ -1,9 +1,15 @@
 import { dispatch } from '../../root/root-store';
 
 export default {
-    async init() {
+    init() {
         dispatch({
             type: 'home/init'
+        });
+    },
+
+    loadMore() {
+        dispatch({
+            type: 'home/load-more'
         });
     }
 };
