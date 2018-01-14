@@ -28,13 +28,15 @@ function* fetchItems(action) {
 
       yield put({
         type: 'home/load-more/success',
-        items: docs.map(convertModelToViewModel),
-        total: meta.hits
+        data: {
+			items: docs.map(convertModelToViewModel),
+			total: meta.hits
+        }
       });
 
       if (!isLoaded) {
         yield put({
-          type: 'home/init/success',
+			type: 'home/init/success',
         });
       }    
    } catch (error) {

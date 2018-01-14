@@ -1,12 +1,16 @@
 import '../styles/home-item.scss';
 
-import * as React from 'react';
+import React from 'react';
+import HomeActions from '../home-actions';
 
 export default (props) => {
     const { data } = props;
 
     return (
-        <article className="home-item">
+        <article 
+            className="home-item" 
+            onClick={() => HomeActions.viewArticle(data)}
+        >
             <h2>{data.headline}</h2>
             <div className="home-item-content">
                 <img

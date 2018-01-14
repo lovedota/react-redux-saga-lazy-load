@@ -4,11 +4,14 @@ const initState = {
     items: [],
     page: 0,
     q: 'singapore',
-    total: 0
+    total: 0,
+    selectedItem: null
 };
 
 export default (state = initState, action) => {
-    switch (action.type) {
+    const { type, data } = action;
+
+    switch (type) {
         case 'home/init':
             return {
                 ...state,
@@ -31,9 +34,15 @@ export default (state = initState, action) => {
         case 'home/load-more/success':
             return {
                 ...state,
-                items: state.items.concat(action.items),
-                total: action.total
+                items: state.items.concat(data.items),
+                total: data.total
             };
+
+        case 'home/view-details':
+            return {
+                ...state,
+                selectedItem: data.item
+            }
 
         default:
             return state;

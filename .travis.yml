@@ -1,0 +1,14 @@
+language: node_js
+cache:
+  directories:
+    - "node_modules"
+node_js:
+  - "iojs"
+  - "7"
+install: true
+script:
+  - npm run prod
+deploy:
+  provider: heroku
+  api_key: ...
+  app: lovedota-nytimes 

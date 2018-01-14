@@ -1,0 +1,8 @@
+{
+  "name": "Lovedota Test NYTimes Application",
+  "description": "NYTimes Application",
+  "repository": "https://github.com/lovedota/react-redux-saga-lazy-load",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}

@@ -11,5 +11,14 @@ export default {
         dispatch({
             type: 'home/load-more'
         });
+    },
+
+    viewArticle(item) {
+        dispatch({
+            type: 'home/view-details',
+            data: {
+                item
+            }
+        });
     }
 };

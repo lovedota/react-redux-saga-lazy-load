@@ -5,7 +5,12 @@ import InfiniteScroll from 'react-infinite-scroller';
 import HomeItem from './home-item';
 import HomeActions from '../home-actions';
 
-export default (props) => {
+interface Props {
+    items: any[],
+    total: number
+}
+
+export default (props: Props) => {
     const { items, total } = props;
 
     let content = items.map((item, index) => {

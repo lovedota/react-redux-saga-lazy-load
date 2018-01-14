@@ -1,23 +1,32 @@
-import * as React from 'react';
-
+import React from 'react';
+import BootstrapModal from 'app/common/bootstrap-modal';
 import HomeActions from './home-actions';
 import HomeList from './components/home-list';
 
 import { connect } from 'react-redux';
 
-interface IHomePageProps {
-    isLoaded: boolean;
-    items: any[];
-    total: number;
+interface Props {
+    isLoaded: boolean,
+    items: any[],
+    total: number,
+    selectedItem: any
 }
 
-class HomePage extends React.Component<IHomePageProps, any> {
+class HomePage extends React.Component<Props, any> {
+    modal: any;
+
     componentDidMount() {
         HomeActions.init();
     }
 
+    componentWillUpdate(nextProps: Props) {
+        if (nextProps.selectedItem !== this.props.selectedItem) {
+            this.modal.open();
+        }
+    }
+
     render() {
-        const { items, isLoaded, total } = this.props;
+        const { items, isLoaded, total, selectedItem } = this.props;
 
         let content;
 
@@ -43,6 +52,13 @@ class HomePage extends React.Component<IHomePageProps, any> {
         return (
             <div>
                 {content}
+                <BootstrapModal
+                    ref={(c) => this.modal = c }
+                    cancel="Close"
+                    title={selectedItem ? selectedItem.headline : ''}
+                >
+                     <iframe frameBorder={0} src={selectedItem ? selectedItem.url : ''} style={{width: '100%', height: '600px'}} /> 
+                </BootstrapModal>
             </div>
         );
     }
@@ -52,6 +68,7 @@ export default connect(
     ({page}) => ({
         isLoaded: page.isLoaded,
         items: page.items,
-        total: page.total
+        total: page.total,
+        selectedItem: page.selectedItem
     })
 )(HomePage);

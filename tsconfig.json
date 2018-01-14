@@ -11,13 +11,14 @@
             "react",
             "react-dom"
         ],
-        "target": "es2015",
+        "allowSyntheticDefaultImports": true,
+        "target": "es5",
         "declaration": false,
         "moduleResolution": "node",
         "baseUrl": ".",
         "rootDir": ".",
         "paths": {
-            "_master-page": ["app/common/root-component/master-page"]
+            "app/*": ["./app/*"]
         }
     },
     "exclude": [

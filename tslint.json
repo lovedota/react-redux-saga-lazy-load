@@ -6,7 +6,7 @@
         "ordered-imports": false,
         "member-access": [false],
         "class-name": true,
-        "indent": [true, "spaces"],
+        "indent": [true, "spaces", 4],
         "no-duplicate-variable": true,
         "no-eval": true,
         "no-internal-module": true,

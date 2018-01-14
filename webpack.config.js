@@ -34,13 +34,16 @@ const config = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      'app': path.resolve(__dirname, './app')
+    }
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loaders: ['babel-loader', 'ts-loader'],
+        loader: 'ts-loader',
         exclude: /(node_modules|bower_components)/,
       },
       {
@@ -53,12 +56,14 @@ const config = {
       {
         test: /\.scss$/,
         use: extractSass.extract({
-            use: [{
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader"
-            }],
-            // use style-loader in development
+            use: [
+              {
+                  loader: "css-loader"
+              }, 
+              {
+                  loader: "sass-loader"
+              }
+            ],
             fallback: "style-loader"
         })
       },
@@ -85,10 +90,6 @@ const config = {
     extractSass,
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
-    }),
-    new WebpackShellPlugin({
-      onBuildStart:['echo "Webpack Start"', 'rm -rf dist'],
-      onBuildEnd:['echo "Webpack End"', 'node server.js']
     })
   ]
 }
@@ -96,7 +97,7 @@ const config = {
 if (isProduction) {
   config.plugins.push(
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': 'production'
+      'process.env': { NODE_ENV: JSON.stringify('production') }
     }),
     new webpack.optimize.UglifyJsPlugin({
       parallel: true,
@@ -109,6 +110,12 @@ if (isProduction) {
   );
 } else {
   config.devtool = 'source-map';
+  config.plugins.push(
+    new WebpackShellPlugin({
+      onBuildStart:['echo "Webpack Start"', 'rm -rf dist'],
+      onBuildEnd:['echo "Webpack End"', 'node server.js']
+    })
+  );
 }
 
 module.exports = config;
