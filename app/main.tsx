@@ -1,7 +1,6 @@
 import 'babel-polyfill';
 import 'jquery';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-sass';
 import './main.scss';
 
 import * as React from 'react';
@@ -11,7 +10,6 @@ import { Router, Route } from 'react-router';
 import createHistory from 'history/createBrowserHistory';
 
 import { withAsync } from './common/async-component';
-import BootstrapMenuLink from './common/bootstrap-menu-link';
 
 import Routes from './routes';
 import RootStore from './root/root-store';

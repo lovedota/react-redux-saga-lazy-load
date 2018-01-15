@@ -6,9 +6,12 @@ const WebpackShellPlugin = require('webpack-shell-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const extractSass = new ExtractTextPlugin({
-  filename: "style.css",
-  disable: !isProduction
+  filename: "style.css"
 });
+
+const extractCss = new ExtractTextPlugin({
+  filename: "style.css"
+})
 
 const config = {
   context: path.resolve(__dirname, './app'),
@@ -30,7 +33,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
-    chunkFilename: '[name].js',
+    chunkFilename: '[name].chunk.js',
     publicPath: '/'
   },
   resolve: {
@@ -45,13 +48,6 @@ const config = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: /(node_modules|bower_components)/,
-      },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        })
       },
       {
         test: /\.scss$/,
@@ -89,7 +85,15 @@ const config = {
     }),
     extractSass,
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      name: 'vendor',
+      minChunks(module, count) {
+        return module.resource && module.resource.indexOf('node_modules') !== -1
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      children: true,
+      async: true,
+      minChunks: 3
     })
   ]
 }
@@ -98,7 +102,9 @@ if (isProduction) {
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') }
-    }),
+    })
+  );
+  config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       parallel: true,
       compress: { warnings: false },

@@ -37,7 +37,8 @@
         "jsx-self-close": [true],
         "jsx-wrap-multiline": [true],
         "jsx-no-lambda": [false],
-        "jsx-no-multiline-js": [false]
+        "jsx-no-multiline-js": [false],
+        "interface-name": false
     }
 }
 

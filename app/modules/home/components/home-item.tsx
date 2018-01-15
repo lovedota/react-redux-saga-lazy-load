@@ -7,8 +7,8 @@ export default (props) => {
     const { data } = props;
 
     return (
-        <article 
-            className="home-item" 
+        <article
+            className="home-item"
             onClick={() => HomeActions.viewArticle(data)}
         >
             <h2>{data.headline}</h2>
@@ -20,7 +20,7 @@ export default (props) => {
                 />
                 <p className="home-item-description">
                     {data.description}
-                </p>             
+                </p>
             </div>
             <div className="home-item-meta">
                 {data.publishDate}

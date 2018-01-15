@@ -10,7 +10,7 @@ interface Props {
 }
 
 class BootstrapModal extends React.Component<Props> {
-    element: JQuery;
+    element: any;
 
     componentDidMount() {
         this.element = $(this.refs.root);
@@ -86,7 +86,7 @@ class BootstrapModal extends React.Component<Props> {
 
         this.close();
     }
-    
+
     handleConfirm() {
         if (this.props.onConfirm) {
             this.props.onConfirm();
