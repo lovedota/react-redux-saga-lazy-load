@@ -1,6 +1,7 @@
 {
     "extends": ["tslint:latest", "tslint-react"],
     "rules": {
+        "jsx-wrap-multiline": false,
         "trailing-comma": [false],
         "interface-over-type-literal": false,
         "ordered-imports": false,
@@ -35,10 +36,10 @@
         ],
         "object-literal-sort-keys": false,
         "jsx-self-close": [true],
-        "jsx-wrap-multiline": [true],
         "jsx-no-lambda": [false],
         "jsx-no-multiline-js": [false],
-        "interface-name": false
+        "interface-name": false,
+        "max-line-length": [true, 180]
     }
 }
 
