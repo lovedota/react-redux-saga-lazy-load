@@ -8,9 +8,11 @@ install: true
 before_script:
   - npm i -g npm@5.6.0
 script:
-- npm run test
+  - npm run test
+  - npm run prod
 deploy:
   provider: heroku
   api_key:
     secure: BSPudUmmgxKnGEdCEnHRb4KV5mwFPjawhnwjeaoGJj/lTLgiCgxNCsw7Ax9IiCHc/ai3DWrJro/nayGEyBa3w+xVVn8bDYJBtAR4Q0/6DLIJNSEh7lEK7cz9NF2ynDQitZGsCnzJ+70UQCO6oM/9mCxTO42MykKmN/4G2iTqA0vQfKMt/QOPB1artOWVIuhGpXIy8c59EFGJkDm8rxV28UDbaHFGgi5i4T10w8gCRRUQaUX6BbPUJxIrbruWU7Db+CEnK2U/Sv/lnRSuiGfp/bmEH7Y2HZ1YHIQRmqkbaOYTTUamp81UOjgaDn3MT5xoGIivzlcAjVpEEwhY4XaLEVYSDtCmAn45FOwUOFlgELgzVHGODDStTKnT9NYpOH/4ebCmsTxRZv7HJbUr1gKqTkjqFkDgBajGi0pRn2aSa/CC79U9B31LtnEkYLjAiSNTfkwSErGz3LXF9hzSCqAsHNXp84sQIwJU4vkpOrlFBLwAZpYRKT1diTWNzsqEp2syKIdY3IGoxdc6F4cwMYlXFBuoCe9bY1VZY4nCpUzihZh0C6GFs0N/cUlBZkvJJDbaKyicEbR7vMyNLYJZMjjlOAeChyEd6nespPNEufpaEzM1sNJqOv8V0EXmjEdv77C62Ld4QhW5juuHJiP01oJem4Hx7uqzcTvrAwiW+DFjKnc=
   app: lovedota-nytimes
+  skip_cleanup: true
