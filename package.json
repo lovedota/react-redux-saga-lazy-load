@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "dev": "cross-env NODE_ENV=dev webpack --watch",
-    "prod": "export NODE_ENV=production webpack -p",
+    "prod": "webpack -p --config=webpack.production.config.js",
     "heroku-postbuild": "echo \"Succcess: Deploy Successfully\""
   },
   "pre-commit": [
