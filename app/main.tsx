@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import 'jquery';
 import 'bootstrap-sass';
 import './main.scss';
