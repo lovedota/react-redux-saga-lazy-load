@@ -10,7 +10,7 @@ export default () => {
             <div className="container">
             {
                 Routes.map((route, index) => (
-                    <NavLink to={route.to} key={index} activeClassName="active">
+                    <NavLink to={route.to} key={index} activeClassName="active" exact={true}>
                         {route.label}
                     </NavLink>
                 ))

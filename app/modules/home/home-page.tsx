@@ -38,9 +38,10 @@ class HomePage extends React.Component<Props, any> {
             );
         } else if (total > 0) {
             content = (
-                <div className="loader-wrapper">
-                    <div className="loader" />
-                </div>
+                <HomeList 
+                    items={items} 
+                    total={total} 
+                />
             );
         } else {
             content = (
