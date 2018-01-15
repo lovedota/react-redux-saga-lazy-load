@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "dev": "cross-env NODE_ENV=dev webpack --watch",
     "prod": "rm -rf ./dist && cross-env NODE_ENV=production webpack -p"
   },
   "pre-commit": [
-    "prod"
+    "test"
   ],
   "author": "lovedota21@gmail.com",
   "engines": {

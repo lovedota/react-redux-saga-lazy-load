@@ -30,7 +30,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
-    chunkFilename: '[id].[chunkhash].js',
+    chunkFilename: '[name].js',
     publicPath: '/'
   },
   resolve: {
@@ -59,7 +59,7 @@ const config = {
             use: [
               {
                   loader: "css-loader"
-              }, 
+              },
               {
                   loader: "sass-loader"
               }
@@ -71,7 +71,7 @@ const config = {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
         loader: 'url-loader',
         options: {
-          limit: 100000
+          limit: 200000
         }
       },
       {
