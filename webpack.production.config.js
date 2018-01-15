@@ -90,11 +90,6 @@ const config = {
         return module.resource && module.resource.indexOf('node_modules') !== -1
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      children: true,
-      async: true,
-      minChunks: 3
-    }),
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
     }),
