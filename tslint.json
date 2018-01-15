@@ -41,7 +41,7 @@
         "interface-name": false,
         "max-line-length": [true, 180],
         "no-implicit-dependencies": [false, "dev"],
-        "no-submodule-imports": [true, "app/common/bootstrap-modal", "redux-saga/effects"]
+        "no-submodule-imports": [false]
     }
 }
 

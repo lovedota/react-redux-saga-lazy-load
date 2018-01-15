@@ -46,9 +46,9 @@ class AboutPage extends React.Component<AboutPageProps, any> {
 }
 
 export default connect(
-    ({page}) => ({
-        isLoading: page.isLoading,
-        items: page.items,
-        color: page.color
+    ({about}) => ({
+        isLoading: about.isLoading,
+        items: about.items,
+        color: about.color
     })
 )(AboutPage);

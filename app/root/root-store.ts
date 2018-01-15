@@ -2,44 +2,45 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { fork } from 'redux-saga/effects';
 
-import RootReducer from '../root/root-reducer';
-import RootSaga from '../root/root-saga';
+import rootReducer from '../root/root-reducer';
+import rootSaga from '../root/root-saga';
+import { moduleName } from 'app/modules/about';
 
 export const sagaMiddleware = createSagaMiddleware();
 
-export const runSagas = (pageSaga?) => {
-    const sagas = [RootSaga];
+const injectedReducers = {}; // Reducer registry
+const injectedSagas = {}; // Saga registry
 
-    if (pageSaga) {
-        sagas.push(pageSaga);
+export const runSagas = (moduleName, saga) => {
+    if (!injectedSagas[moduleName]) {
+        injectedSagas[moduleName] = saga;
     }
 
+    const sagas = Object.keys(injectedSagas).map((key) => injectedSagas[key]);
+
     sagaMiddleware.run(function*() {
-        yield sagas.map((saga) => fork(saga));
+        yield sagas.map((s) => fork(s));
     });
 };
 
-export const createReducers = (pageReducer?) => {
-    const reducers = {
-        root: RootReducer
-    };
-
-    if (pageReducer) {
-        reducers['page'] = pageReducer;
+export const createReducers = (moduleName, reducer) => {
+    if (!injectedReducers[moduleName]) {
+        injectedReducers[moduleName] = reducer;
     }
 
-    return combineReducers(reducers);
+    return combineReducers(injectedReducers);
 };
 
-const store = createStore(
-    createReducers(), applyMiddleware(sagaMiddleware)
+let store = createStore(
+    createReducers('root', rootReducer), applyMiddleware(sagaMiddleware)
 );
 
-export const applyReducers = (pageReducer) => {
-    store.replaceReducer(createReducers(pageReducer));
+// tslint:disable-next-line:no-shadowed-variable
+export const injectAsyncReducer = (moduleName, reducer) => {
+    store.replaceReducer(createReducers(moduleName, reducer));
 };
 
-runSagas(RootSaga);
+runSagas('root', rootSaga);
 
 export const dispatch = store.dispatch;
 

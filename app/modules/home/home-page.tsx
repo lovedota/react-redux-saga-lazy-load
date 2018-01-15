@@ -16,7 +16,9 @@ class HomePage extends React.Component<Props, any> {
     modal: any;
 
     componentDidMount() {
-        HomeActions.init();
+        if (!this.props.isLoaded) {
+            HomeActions.init();
+        }
     }
 
     componentWillUpdate(nextProps: Props) {
@@ -38,9 +40,9 @@ class HomePage extends React.Component<Props, any> {
             );
         } else if (total > 0) {
             content = (
-                <HomeList 
-                    items={items} 
-                    total={total} 
+                <HomeList
+                    items={items}
+                    total={total}
                 />
             );
         } else {
@@ -58,10 +60,10 @@ class HomePage extends React.Component<Props, any> {
 }
 
 export default connect(
-    ({page}) => ({
-        isLoaded: page.isLoaded,
-        items: page.items,
-        total: page.total,
-        selectedItem: page.selectedItem
+    ({home}) => ({
+        isLoaded: home.isLoaded,
+        items: home.items,
+        total: home.total,
+        selectedItem: home.selectedItem
     })
 )(HomePage);

@@ -20,7 +20,7 @@ function convertModelToViewModel(item) {
 
 function* fetchItems(action) {
    try {
-      const { q, page, isLoaded } = yield select((state: any) => state.page);
+      const { q, page, isLoaded } = yield select((state: any) => state.home);
 
       const { data } = yield HomeServices.getNews(q, page);
 

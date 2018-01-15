@@ -3,7 +3,7 @@ export default {
         return new Promise<any[]>((resolve) => {
             const items = [];
 
-            for (let i = 0; i < 1000000; i++) {
+            for (let i = 0; i < 5; i++) {
               // each child must have a consistent height
                 items.push({
                     id: i,
@@ -15,7 +15,7 @@ export default {
 
             setTimeout(() => {
                 resolve(items);
-            }, 1000);
+            }, 500);
         });
     }
 };
