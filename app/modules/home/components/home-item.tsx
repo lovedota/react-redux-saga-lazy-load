@@ -11,19 +11,21 @@ export default (props) => {
             className="home-item"
             onClick={() => HomeActions.viewArticle(data)}
         >
-            <h2>{data.headline}</h2>
             <div className="home-item-content">
                 <img
                     src={data.thumbnail}
                     alt="post img"
                     className="home-item-thumb img-responsive img-thumbnail"
                 />
-                <p className="home-item-description">
-                    {data.description}
-                </p>
-            </div>
-            <div className="home-item-meta">
-                {data.publishDate}
+                <div className="home-item-description">
+                    <p>
+                        {data.description}
+                    </p>
+                    <p className="home-item-meta">
+                        {data.publishDate}
+                    </p>
+                </div>
+
             </div>
         </article>
     );

@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 interface Props {
-    onConfirm?: () => void,
-    onCancel?: () => void,
-    onHidden?: () => void,
-    confirm?: string,
-    cancel?: string,
+    onConfirm?: () => void;
+    onCancel?: () => void;
+    onHidden?: () => void;
+    confirm?: string;
+    cancel?: string;
     title?: string;
 }
 

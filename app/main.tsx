@@ -19,7 +19,7 @@ const Container = (
     <>
         <Navigation />
         <Provider store={RootStore}>
-            <div className="container">
+            <div className="container page-container">
                 {
                     Routes.map((route, index) => (
                         <Route

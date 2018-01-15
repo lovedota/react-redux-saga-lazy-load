@@ -6,10 +6,10 @@ import HomeList from './components/home-list';
 import { connect } from 'react-redux';
 
 interface Props {
-    isLoaded: boolean,
-    items: any[],
-    total: number,
-    selectedItem: any
+    isLoaded: boolean;
+    items: any[];
+    total: number;
+    selectedItem: any;
 }
 
 class HomePage extends React.Component<Props, any> {
@@ -38,10 +38,9 @@ class HomePage extends React.Component<Props, any> {
             );
         } else if (total > 0) {
             content = (
-                <HomeList 
-                    items={items} 
-                    total={total} 
-                />
+                <div className="loader-wrapper">
+                    <div className="loader" />
+                </div>
             );
         } else {
             content = (
@@ -52,13 +51,6 @@ class HomePage extends React.Component<Props, any> {
         return (
             <div>
                 {content}
-                <BootstrapModal
-                    ref={(c) => this.modal = c }
-                    cancel="Close"
-                    title={selectedItem ? selectedItem.headline : ''}
-                >
-                     <iframe frameBorder={0} src={selectedItem ? selectedItem.url : ''} style={{width: '100%', height: '600px'}} /> 
-                </BootstrapModal>
             </div>
         );
     }

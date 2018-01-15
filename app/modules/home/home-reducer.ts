@@ -29,7 +29,7 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 page: state.page + 1
-            }
+            };
 
         case 'home/load-more/success':
             return {
@@ -42,7 +42,7 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 selectedItem: data.item
-            }
+            };
 
         default:
             return state;
