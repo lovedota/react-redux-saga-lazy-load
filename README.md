@@ -6,6 +6,7 @@
 
 - This Repo is for building a Lazy Load Template for SPA
 - This Repo is using React, Redux, React-Router, Redux-Saga, TypeScript
+- This Repo builds a NYTimes News Feeds App which has: InfiniteScroll, BootStrap
 
 ### Architecture
 
