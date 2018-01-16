@@ -1,3 +1,7 @@
+### Travis
+
+- [![Build Status](https://travis-ci.org/lovedota/react-redux-saga-lazy-load.svg?branch=master)](https://travis-ci.org/lovedota/react-redux-saga-lazy-load)
+
 ### Description
 
 - This Repo is for building a Lazy Load Template for SPA
