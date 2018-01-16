@@ -16,6 +16,7 @@
 ### How to run
 
 - npm install
+- npm install -g cross-env
 - npm install -g ts-lint
 - npm install -g typescript
 - npm run dev - For Dev Environment
